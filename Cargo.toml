@@ -1,0 +1,22 @@
+[package]
+name = "da-adapter-template"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# The only required dependency for a DA adapter is the Sovereign SDK...
+sovereign-sdk =  { git = "https://github.com/Sovereign-Labs/sovereign.git", rev = "5e43c3ee9b5785abdca33b21c86fd38dbd9285e0" }
+
+
+# But we suspect that most implementations will want one or more of the following crates
+# tracing = "0.1.37"
+# serde = { version = "1", features = ["derive"] }
+# Derive borsh for instant implementations of the Sovereign SDK's encode/decode traits
+# borsh = { version = "0.10.3", features = ["bytes"] }
+
+[features]
+default = ["native"]
+native = []
+verifier = []
