@@ -1,7 +1,11 @@
 # Da Adapter Template
 
 This repository provides a template for implementing an adapter between the Sovereign SDK
-and a data availability layer.
+and a data availability layer. As the template suggests, such adapters are _libraries_, intended
+to be consumed by a downstream binary crate which implements the Rollup full node.
+
+To implement an adaptor, simply define the types used by your DA layer in the `DaSpec` in `lib.rs`,
+then implement the two core traits scaffolded in this repository - `DaVerifier` and `DaService`.
 
 ### The DaVerifier Trait
 
@@ -9,7 +13,7 @@ The DaVerifier trait is the simpler of the two core traits. Its job is to take a
 and verify that the list is _complete_ and _correct_. Once deployed in a rollup, the data verified by this trait
 will be passed to the state transition function, so non-determinism should be strictly avoided.
 
-The logic inside this trait will get compiled down into your rollup's proof system, so it's important to gain a high
+The logic inside this trait will get compiled down into your rollup's proof system, so it's important to have a high
 degree of confidence in its correctness (upgrading SNARKs is hard!) and think carefully about performance.
 
 At a bare minimum, you should ensure that the verifier rejects...
